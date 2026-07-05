@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Loan Approved</title>
+</head>
+<body>
+
+<h1>Loan Application Submitted</h1>
+
+<h2>User: <span th:text="${username}"></span></h2>
+
+<h2>Loan Type: <span th:text="${loanType}"></span></h2>
+
+<h2>Loan Amount: ₹ <span th:text="${loanAmount}"></span></h2>
+
+<h2>Monthly EMI: ₹ <span th:text="${emi}"></span></h2>
+
+<h2>Required Documents:</h2>
+
+<ul>
+
+    <li>Aadhar Card</li>
+
+    <li>PAN Card</li>
+
+    <li>Bank Statement</li>
+
+    <li>Salary Slips</li>
+
+</ul>
+
+</body>
+</html>

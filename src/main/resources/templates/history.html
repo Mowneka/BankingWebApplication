@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Transaction History</title>
+
+    <style>
+
+        body{
+            margin:0;
+            font-family:Arial,sans-serif;
+            background:#08152f;
+        }
+
+        .container{
+            width:90%;
+            max-width:1200px;
+            margin:40px auto;
+        }
+
+        .card{
+            background:white;
+            padding:25px;
+            border-radius:15px;
+            box-shadow:0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h2{
+            text-align:center;
+            color:#08152f;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            margin-top:20px;
+        }
+
+        thead{
+            background:#2563eb;
+            color:white;
+        }
+
+        th,td{
+            padding:14px;
+            text-align:center;
+        }
+
+        tbody tr:nth-child(even){
+            background:#f5f7fb;
+        }
+
+        tbody tr:hover{
+            background:#eaf1ff;
+        }
+
+        .deposit{
+            color:green;
+            font-weight:bold;
+        }
+
+        .withdraw{
+            color:red;
+            font-weight:bold;
+        }
+
+        .transfer{
+            color:#2563eb;
+            font-weight:bold;
+        }
+
+        .back{
+            display:inline-block;
+            margin-top:20px;
+            text-decoration:none;
+            background:#2563eb;
+            color:white;
+            padding:10px 20px;
+            border-radius:8px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h2>Transaction History</h2>
+
+        <table>
+
+            <thead>
+            <tr>
+                <th>Sender</th>
+                <th>Receiver</th>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Date</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            <tr th:each="tx : ${transactions}">
+
+                <td th:text="${tx.sender}"></td>
+
+                <td th:text="${tx.receiver}"></td>
+
+                <td>
+
+                    <span th:if="${tx.type=='DEPOSIT'}"
+                          class="deposit"
+                          th:text="${tx.type}">
+                    </span>
+
+                    <span th:if="${tx.type=='WITHDRAW'}"
+                          class="withdraw"
+                          th:text="${tx.type}">
+                    </span>
+
+                    <span th:if="${tx.type=='TRANSFER'}"
+                          class="transfer"
+                          th:text="${tx.type}">
+                    </span>
+
+                </td>
+
+                <td>₹ <span th:text="${tx.amount}"></span></td>
+
+                <td th:text="${tx.transactionDate}"></td>
+
+            </tr>
+
+            </tbody>
+
+        </table>
+
+        <a href="/dashboard" class="back">
+            Back to Dashboard
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

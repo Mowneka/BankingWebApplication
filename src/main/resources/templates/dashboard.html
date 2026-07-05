@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+    <h2 th:text="'₹' + ${user.balance}"></h2>
+    <a href="/dashboard">Dashboard</a>
+
+    <a href="/deposit">Deposit</a>
+
+    <a href="/withdraw">Withdraw</a>
+
+    <a href="/transfer">Transfer</a>
+
+    <a href="/history">History</a>
+
+  <a href="/loan">Loans</a>
+
+<a th:if="${user.role == 'ADMIN'}"
+   href="/admin">
+   Admin Panel
+</a>
+
+<a href="/logout">Logout</a>
+</div>
+
+<div class="main">
+
+    <h1>
+        Welcome,
+        <span th:text="${user.username}"></span>
+    </h1>
+
+    <h2>Welcome, <span th:text="${user.username}"></span></h2>
+
+<div class="customer-info">
+
+    <p>
+        <strong>Username:</strong>
+        <span th:text="${user.username}"></span>
+    </p>
+
+    <p>
+        <strong>Account Number:</strong>
+        <span th:text="${user.accountNumber}"></span>
+    </p>
+
+    <p>
+        <strong>Aadhaar Number:</strong>
+        <span th:text="${user.aadhaarNumber}"></span>
+    </p>
+
+    <p>
+        <strong>Mobile Number:</strong>
+        <span th:text="${user.mobileNumber}"></span>
+    </p>
+
+    <p>
+        <strong>Balance:</strong>
+        ₹<span th:text="${user.balance}"></span>
+    </p>
+
+</div>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Current Balance</h3>
+            <h2>₹ <span th:text="${user.balance}"></span></h2>
+        </div>
+
+        <div class="card">
+            <h3>Total Deposits</h3>
+            <h2 th:text="${deposits}"></h2>
+        </div>
+
+        <div class="card">
+            <h3>Total Withdrawals</h3>
+            <h2 th:text="${withdrawals}"></h2>
+        </div>
+
+        <div class="card">
+            <h3>Total Transfers</h3>
+            <h2 th:text="${transfers}"></h2>
+        </div>
+
+    </div>
+
+    <div class="table-card">
+
+        <h2>Recent Transactions</h2>
+
+        
+
+        <table>
+
+            <thead>
+
+            <tr>
+                <th>Sender</th>
+                <th>Receiver</th>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Date</th>
+            </tr>
+
+            </thead>
+
+            <tbody>
+
+            <tr th:each="tx : ${transactions}">
+
+                <td th:text="${tx.sender}"></td>
+
+                <td th:text="${tx.receiver}"></td>
+
+                <td th:text="${tx.type}"></td>
+
+                <td>₹ <span th:text="${tx.amount}"></span></td>
+
+                <td th:text="${tx.transactionDate}"></td>
+
+            </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

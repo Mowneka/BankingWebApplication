@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>OTP Verification</title>
+
+    <style>
+        /* Your CSS here */
+    </style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+    <h1>OTP Verification</h1>
+
+    <p class="subtitle">
+        Enter the OTP shown below
+    </p>
+
+    <div class="otp-box">
+
+        <div class="otp-label">
+            Generated OTP
+        </div>
+
+        <div class="otp-value"
+             th:text="${otp}">
+            123456
+        </div>
+
+    </div>
+
+    <form action="/verify-otp" method="post">
+
+        <input type="text"
+               name="otp"
+               placeholder="Enter OTP"
+               required>
+
+        <button type="submit">
+            Verify OTP
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>
